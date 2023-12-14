@@ -27,7 +27,7 @@ void f_func(char *opcode, char *value, int ln, int format)
 	{
 		if (strcmp(opcode, func_l[i].opcode) == 0)
 		{
-			call_fun(func_l[i].f, opcode, value, ln, format);
+			c_func(func_l[i].f, opcode, value, ln, format);
 			flag = 0;
 		}
 	}
@@ -71,7 +71,7 @@ void c_func(op_f func, char *op, char *val, int ln, int format)
 		if (format == 0)
 			func(&node, ln);
 		if (format == 1)
-			add_to_queue(&node, ln);
+			add_queue(&node, ln);
 	}
 	else
 		func(&head, ln);
