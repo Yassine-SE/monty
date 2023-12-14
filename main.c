@@ -23,39 +23,83 @@ int main(int argc, char *argv[])
 }
 
 /**
- * o_file - function
- * @f_name: param
+ * c_node - function
+ * @n: param
  *
  * Return: 0 success
  */
-void o_file(char *f_name)
+stack_t *c_node(int n)
 {
-	FILE *fd = fopen(f_name, "r");
+	stack_t *node;
 
-	if (!f_name || !fd)
-		fprintf(stderr, "Error: Can't open file\n");
+	node = malloc(sizeof(stack_t));
+	if (!node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
-	read_file(fd);
-	fclose(fd);
+	node->next = NULL;
+	node->prev = NULL;
+	node->n = n;
+	return (node);
 }
 
 /**
- * r_file - function
- * @f: param
+ * p_line - function
+ * @buffer: param
+ * @line_n: param
+ * @format: param
  *
  * Return: 0 success
  */
-void r_file(FILE *f)
+int p_line(char *buffer, int line_n, int format)
 {
-	int n_line; 
-	char *buffer = NULL;
-	size_t len = 0;
-     int format = 0;
+	char *opcode, *value;
+	const char *delim = "\n ";
 
-	for (n_line = 1; getline(&buffer, &len, f) != -1; n_line++)
-		format = parse_line(buffer, n_line, format);
+	if (!buffer)
+		err(4);
 
-	free(buffer);
+	opcode = strtok(buffer, delim);
+	if (!opcode)
+		return (format);
+
+     value = strtok(NULL, delim);
+	if (strcmp(opcode, "stack") == 0)
+		return (0);
+	if (strcmp(opcode, "queue") == 0)
+		return (1);
+
+	f_func(opcode, value, line_n, format);
+	return (format);
+}
+
+/**
+ * add_queue - function
+ * @stack: param
+ * @n_line: param
+ *
+ * Return: 0 success
+ */
+void add_queue(stack_t **stack, unsigned int n_line)
+{
+	stack_t *tmp;
+	(int) *n_line;
+
+	if (!stack || !*stack)
+		exit(EXIT_FAILURE);
+	if (!head)
+	{
+		head = *stack;
+		return;
+	}
+	tmp = head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
 }
 
 /**

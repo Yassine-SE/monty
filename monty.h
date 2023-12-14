@@ -2,10 +2,13 @@
 #define MONTY_H
 
 #include <stdio.h>
-#include <unistd.h>
-#include <ctype.h>
-#include <stdarg.h>
 #include <stdlib.h>
+#include <stdarg.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <ctype.h>
 #include <string.h>
 
 /**
@@ -38,11 +41,17 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+typedef void (*op_f)(stack_t **, unsigned int);
 extern stack_t *head;
 
 void o_file(char *f_name);
 void r_file(FILE *f);
+stack_t *c_node(int n);
+void add_queue(stack_t **stack, unsigned int n_line);
 void free_nodes(void);
+
+void f_func(char *opcode, char *value, int ln, int format);
+void c_func(op_f func, char *op, char *val, int ln, int format);
 
 void push_stack(stack_t **stack, unsigned int n_line);
 void pall_stack(stack_t **stack, unsigned int n_line);
