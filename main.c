@@ -85,10 +85,9 @@ int p_line(char *buffer, int line_n, int format)
  *
  * Return: 0 success
  */
-void add_queue(stack_t **stack, unsigned int n_line)
+void add_queue(stack_t **stack, __attribute__((unused))unsigned int n_line)
 {
 	stack_t *tmp;
-	(unsigned int) n_line;
 
 	if (!stack || !*stack)
 		exit(EXIT_FAILURE);
