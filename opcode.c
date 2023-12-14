@@ -63,12 +63,18 @@ void c_func(op_f func, char *op, char *val, int ln, int format)
 			flag = -1;
 		}
 		if (!val)
-			err(5, ln);
+          {
+               fprintf(stderr, "Usage: push integer\n");
+               exit(EXIT_FAILURE);
+          }
 
 		for (i = 0; val[i] != '\0'; i++)
 		{
 			if (isdigit(val[i]) == 0)
-				err(5, ln);
+               {
+                    fprintf(stderr, "Usage: push integer\n");
+                    exit(EXIT_FAILURE);
+               }
 		}
 		node = c_node(atoi(val) * flag);
 		if (format == 0)
