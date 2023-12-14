@@ -53,7 +53,7 @@ void pint_stack(stack_t **stack, unsigned int n_line)
 {
 	if (stack == NULL || *stack == NULL)
 	{
-		dprintf(2, "L%d: can't pint, stack empty\n", n_line);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", n_line);
 		exit(EXIT_FAILURE);
 	}
 
@@ -71,7 +71,7 @@ void pop_stack(stack_t **stack, unsigned int n_line)
 
 	if (!stack || !*stack)
 	{
-		dprintf(2, "L%d: can't pop an empty stack\n", n_line);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", n_line);
 		exit(EXIT_FAILURE);
 	}
 
