@@ -48,6 +48,7 @@ extern stack_t *head;
 void o_file(char *f_name);
 void r_file(FILE *f);
 stack_t *c_node(int n);
+int p_line(char *buffer, int line_n, int format);
 void add_queue(stack_t **stack, unsigned int n_line);
 void free_nodes(void);
 
