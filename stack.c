@@ -52,7 +52,11 @@ void pall_stack(stack_t **stack, unsigned int n_line)
 void pint_stack(stack_t **stack, unsigned int n_line)
 {
 	if (stack == NULL || *stack == NULL)
-		more_err(6, n_line);
+	{
+		dprintf(2, "L%d: can't pint, stack empty\n", n_line);
+		exit(EXIT_FAILURE);
+	}
+
 	printf("%d\n", (*stack)->n);
 }
 

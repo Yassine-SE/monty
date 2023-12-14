@@ -38,10 +38,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
 extern stack_t *head;
-
-
 
 void push_stack(stack_t **stack, unsigned int n_line);
 void pall_stack(stack_t **stack, unsigned int n_line);
