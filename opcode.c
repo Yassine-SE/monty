@@ -33,7 +33,10 @@ void f_func(char *opcode, char *value, int ln, int format)
 	}
 
 	if (flag == 1)
-		err(3, ln, opcode);
+	{
+		fprintf(stderr, "Unknown instruction\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**

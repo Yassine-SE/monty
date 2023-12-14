@@ -88,7 +88,7 @@ int p_line(char *buffer, int line_n, int format)
 void add_queue(stack_t **stack, unsigned int n_line)
 {
 	stack_t *tmp;
-	(int) n_line;
+	(unsigned int) n_line;
 
 	if (!stack || !*stack)
 		exit(EXIT_FAILURE);
@@ -98,7 +98,7 @@ void add_queue(stack_t **stack, unsigned int n_line)
 		return;
 	}
 	tmp = head;
-	while (tmp->next != NULL)
+	while (tmp->next)
 		tmp = tmp->next;
 
 	tmp->next = *stack;
