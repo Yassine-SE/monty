@@ -40,6 +40,9 @@ typedef struct instruction_s
 
 extern stack_t *head;
 
+void o_file(char *f_name);
+void free_nodes(void);
+
 void push_stack(stack_t **stack, unsigned int n_line);
 void pall_stack(stack_t **stack, unsigned int n_line);
 void pint_stack(stack_t **stack, unsigned int n_line);
